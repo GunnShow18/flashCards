@@ -1,0 +1,47 @@
+doctype html
+html(lang='en')
+  head
+    link(rel="stylesheet" type="text/css" href="/css/style.css")
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', crossorigin='anonymous')
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title flashCard-Website
+  body
+    .jumbotron.text-center
+      h1 Flash-CARDS!
+    .container.text-center
+      h1 WANT TO STUDY!?
+      h3 Enter questions, answers, and hints below!
+      hr
+      form#cardForm(action='/flashcards', method='POST')
+        span Question
+        br
+        input(type='text', placeholder='question', name='question' size="50")
+        hr
+        span Hint
+        br
+        input(type='text', placeholder='hint', name='hint' size="50")
+        hr
+        span Answer
+        br
+        input(type='text', placeholder='answer', name='answer' size="50")
+        hr
+        
+        input(type='button', onclick='clearCardForm()', value='Clear Flash Card')
+        | 
+        button(type='submit') Submit
+        a(href='cards')
+          button(type='button') Go to Cards..
+        hr
+        div
+          fCards
+        hr
+      script.
+        function clearCardForm() {
+        document.getElementById("cardForm").reset();
+        }
+      script(src='https://code.jquery.com/jquery-3.3.1.js', integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=', crossorigin='anonymous')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+      script(src='/scripts/index.js')
