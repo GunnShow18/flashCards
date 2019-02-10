@@ -26,11 +26,12 @@ MongoClient.connect("mongodb://senor:senor123@ds053166.mlab.com:53166/flashcardz
         })
     })
 })
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
     res.render('index.pug')
 })
 
-app.get("/cards", (req, res) => {
+
+app.get("/cards", (req, res, next) => {
     let cursor = db.collection("flashcards").find().toArray((err, results) => {
         if (err) return console.log(err)
         console.log(results)
@@ -38,11 +39,19 @@ app.get("/cards", (req, res) => {
     })
 })
 
-app.get('/flashcards', (req, res) => {
+app.get("/updateCards", (req, res, next) => {
+    let cursor = db.collection("flashcards").find().toArray((err, results) => {
+        if (err) return console.log(err)
+        console.log(results)
+        res.render('updateCards.pug')
+    })
+})
+
+app.get('/flashcards', (req, res, next) => {
     res.send(flashCards)
 })
 
-app.post("/flashcards", (req, res) => {
+app.post("/flashcards", (req, res, next) => {
     db.collection('flashcards').save(req.body, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database :)')
@@ -50,3 +59,6 @@ app.post("/flashcards", (req, res) => {
     })
 })
 
+app.delete("/updateCards", (req, res, next) => {
+    res.render('updateCards.pug')
+})
